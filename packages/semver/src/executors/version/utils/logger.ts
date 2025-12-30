@@ -1,5 +1,5 @@
 import { logger } from '@nx/devkit';
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import { tap, type MonoTypeOperatorFunction } from 'rxjs';
 
 type Step =

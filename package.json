@@ -1,5 +1,5 @@
 {
-  "name": "jscutlery",
+  "name": "millenniumbcp",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -28,7 +28,6 @@
     "contributors:generate": "all-contributors generate",
     "postinstall": "husky install"
   },
-  "private": true,
   "devDependencies": {
     "@angular-devkit/schematics": "19.2.19",
     "@commitlint/cli": "^19.0.0",
@@ -54,7 +53,7 @@
     "jest-extended": "^4.0.0",
     "jest-util": "30.0.5",
     "ngx-deploy-npm": "^8.0.0",
-    "nx": "21.6.5",
+    "nx": "22.3.3",
     "prettier": "3.6.2",
     "tmp": "^0.2.1",
     "ts-jest": "29.4.5",

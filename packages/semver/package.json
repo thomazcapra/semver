@@ -1,6 +1,6 @@
 {
-  "name": "@jscutlery/semver",
-  "version": "5.7.1",
+  "name": "@millenniumbcp/version",
+  "version": "8.1.0",
   "description": "Nx plugin for automate versioning and CHANGELOG generation.",
   "license": "MIT",
   "main": "src/index.js",
@@ -10,13 +10,16 @@
     "migrations": "./migrations.json"
   },
   "repository": {
-    "url": "https://github.com/jscutlery/semver"
+    "url": "https://github.com/thomzcapra/semver"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
-    "@nx/devkit": "^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0"
+    "@nx/devkit": ">=18.0.0"
   },
   "dependencies": {
-    "chalk": "4.1.2",
+    "chalk": "^5.6.2",
     "conventional-changelog": "^5.1.0",
     "conventional-changelog-angular": "^7.0.0",
     "conventional-changelog-atom": "^4.0.0",

@@ -1,22 +1,67 @@
-<a href="https://www.npmjs.com/package/@jscutlery/semver" rel="nofollow">
-  <img src="https://badgen.net/npm/v/@jscutlery/semver" alt="@jscutlery/semver NPM package">
+<div align="center">
+
+![Millennium BCP Logo](https://www.millenniumbcp.pt/media/5bqpjd4v/m-logo.png)
+
+# @millenniumbcp/version
+
+**Enterprise-Grade Nx Plugin for Automated Versioning and CHANGELOG Generation**
+
+<a href="https://www.npmjs.com/package/@millenniumbcp/version" rel="nofollow">
+  <img src="https://badgen.net/npm/v/@millenniumbcp/version" alt="@millenniumbcp/version NPM package">
+</a>
+<a href="https://codecov.io/gh/thomzcapra/semver" rel="nofollow">
+  <img src="https://codecov.io/gh/thomzcapra/semver/branch/main/graph/badge.svg?token=6LFY2EJ6UG" alt="@millenniumbcp/version coverage status" />
+</a>
+<a href="https://github.com/thomzcapra/semver/blob/main/LICENSE">
+  <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT" />
 </a>
 
-<a href="https://codecov.io/gh/jscutlery/semver" rel="nofollow">
-  <img src="https://codecov.io/gh/jscutlery/semver/branch/main/graph/badge.svg?token=6LFY2EJ6UG" alt="@jscutlery/semver coverage status" />
-</a>
+</div>
 
-# @jscutlery/semver
+---
 
-**Nx plugin for versioning** using [SemVer](https://semver.org/) and **CHANGELOG generation** powered by [Conventional Commits](https://conventionalcommits.org).
+> **Note:** This is a fork of [@jscutlery/semver](https://github.com/jscutlery/semver), maintained and enhanced by Millennium BCP's engineering team to meet enterprise banking standards and requirements.
+
+---
+
+## About Millennium BCP
+
+[Millennium BCP](https://www.millenniumbcp.pt/en) (Banco Comercial Português) is Portugal's largest private-sector bank and one of the leading financial institutions in Europe. With a strong commitment to digital innovation and sustainability, Millennium BCP has been recognized as:
+
+- 🏆 **Best Digital Bank in Portugal, Poland, and Mozambique** (Global Finance, 2024)
+- 🏆 **Best Bank for Sustainable Finance** (Global Finance, 2025)
+- 🌍 **Europe's Climate Leaders 2025** (Financial Times)
+- 💡 **Best Investment Bank in Portugal** (Global Finance, 2024)
+
+This package is part of Millennium BCP's open-source initiative, contributing to the developer community while maintaining the high standards required for enterprise banking software development.
+
+---
+
+## Overview
+
+**@millenniumbcp/version** is a comprehensive **Nx plugin for versioning** using [SemVer](https://semver.org/) and **CHANGELOG generation** powered by [Conventional Commits](https://conventionalcommits.org).
+
+## Features
+
+✨ **Enterprise-Ready Features:**
+
+- 🔄 **Automated Versioning** - Intelligent semantic versioning based on conventional commits
+- 📝 **CHANGELOG Generation** - Automatic changelog generation with customizable presets
+- 🔀 **Flexible Modes** - Support for both independent and synced versioning strategies
+- 🎯 **Dependency Tracking** - Smart version bumping based on project dependencies
+- 🚀 **CI/CD Integration** - Seamless integration with GitHub Actions, GitLab CI, and other platforms
+- 🔐 **Production-Grade** - Battle-tested in enterprise banking environments
+- 📦 **Post-Release Automation** - Trigger custom executors after versioning (npm publish, GitHub releases, etc.)
+
+---
 
 ## Setup
 
 ### Install
 
 ```sh
-npm install -D @jscutlery/semver
-nx g @jscutlery/semver:install
+npm install -D @millenniumbcp/version
+nx g @millenniumbcp/version:install
 ```
 
 This package allows you to manage your Nx workspace using one of two modes: **Synced** or **Independent**.
@@ -67,30 +112,30 @@ nx run workspace:version [...options]
 
 #### Available options
 
-| name                         | type               | default     | description                                                                                                                                                     |
-| ---------------------------- | ------------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`--dryRun`**               | `boolean`          | `false`     | run with dry mode                                                                                                                                               |
-| **`--noVerify`**             | `boolean`          | `false`     | skip git hooks                                                                                                                                                  |
-| **`--enforceAtomicPush`**    | `boolean`          | `false`     | enforce an atomic push without retrying a non atomic one in case of failure                                                                                     |
-| **`--push`**                 | `boolean`          | `false`     | push the release to the remote repository                                                                                                                       |
-| **`--syncVersions`**         | `boolean`          | `false`     | lock/sync versions between projects                                                                                                                             |
-| **`--skipRootChangelog`**    | `boolean`          | `false`     | skip generating root changelog                                                                                                                                  |
-| **`--skipProjectChangelog`** | `boolean`          | `false`     | skip generating project changelog                                                                                                                               |
-| **`--origin`**               | `string`           | `'origin'`  | push against git remote repository                                                                                                                              |
-| **`--baseBranch`**           | `string`           | `'main'`    | push against git base branch                                                                                                                                    |
-| **`--changelogHeader`**      | `string`           | `undefined` | custom Markdown header for changelogs                                                                                                                           |
-| **`--releaseAs`**            | `string`           | `undefined` | specify the level of change ([details](https://github.com/jscutlery/semver#specify-the-level-of-change))                                                        |
-| **`--preid`**                | `string`           | `undefined` | specify the prerelease identifier (eg: alpha, beta) ([details](https://github.com/jscutlery/semver#specify-the-level-of-change))                                |
-| **`--tagPrefix`**            | `string`           | `undefined` | specify the tag prefix ([details](https://github.com/jscutlery/semver#tag-prefix-customization))                                                                |
-| **`--postTargets`**          | `string[]`         | `[]`        | specify the list of target to execute post-release ([details](https://github.com/jscutlery/semver#triggering-executors-post-release))                           |
-| **`--trackDeps`**            | `boolean`          | `false`     | bump dependent packages (bump A if A depends on B) ([details](https://github.com/jscutlery/semver#tracking-dependencies))                                       |
-| **`--allowEmptyRelease`**    | `boolean`          | `false`     | force a patch increment even if library source didn't change                                                                                                    |
-| **`--skipCommitTypes`**      | `string[]`         | `[]`        | treat commits with specified types as non invoking version bump ([details](https://github.com/jscutlery/semver#skipping-release-for-specific-types-of-commits)) |
-| **`--skipCommit`**           | `boolean`          | `false`     | skips generating a new commit, leaves all changes in index, tag would be put on last commit ([details](https://github.com/jscutlery/semver#skipping-commit))    |
-| **`--skipStage`**            | `boolean`          | `false`     | skips add to git stage, useful when you want to run nx cmd in parallel ([details](https://github.com/jscutlery/semver#skipping-stage))                          |
-| **`--commitMessageFormat`**  | `string`           | `undefined` | format the auto-generated message commit ([details](https://github.com/jscutlery/semver#commit-message-customization))                                          |
-| **`--preset`**               | `string \| object` | `'angular'` | customize Conventional Changelog options ([details](https://github.com/jscutlery/semver#customizing-conventional-changelog))                                    |
-| **`--commitParserOptions`**  | `object`           | `undefined` | customize the commit parserConfig ([details](https://github.com/jscutlery/semver#customizing-the-commit-parser))                                                |
+| name                         | type               | default     | description                                                                                                                                                      |
+| ---------------------------- | ------------------ | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`--dryRun`**               | `boolean`          | `false`     | run with dry mode                                                                                                                                                |
+| **`--noVerify`**             | `boolean`          | `false`     | skip git hooks                                                                                                                                                   |
+| **`--enforceAtomicPush`**    | `boolean`          | `false`     | enforce an atomic push without retrying a non atomic one in case of failure                                                                                      |
+| **`--push`**                 | `boolean`          | `false`     | push the release to the remote repository                                                                                                                        |
+| **`--syncVersions`**         | `boolean`          | `false`     | lock/sync versions between projects                                                                                                                              |
+| **`--skipRootChangelog`**    | `boolean`          | `false`     | skip generating root changelog                                                                                                                                   |
+| **`--skipProjectChangelog`** | `boolean`          | `false`     | skip generating project changelog                                                                                                                                |
+| **`--origin`**               | `string`           | `'origin'`  | push against git remote repository                                                                                                                               |
+| **`--baseBranch`**           | `string`           | `'main'`    | push against git base branch                                                                                                                                     |
+| **`--changelogHeader`**      | `string`           | `undefined` | custom Markdown header for changelogs                                                                                                                            |
+| **`--releaseAs`**            | `string`           | `undefined` | specify the level of change ([details](https://github.com/thomzcapra/semver#specify-the-level-of-change))                                                        |
+| **`--preid`**                | `string`           | `undefined` | specify the prerelease identifier (eg: alpha, beta) ([details](https://github.com/thomzcapra/semver#specify-the-level-of-change))                                |
+| **`--tagPrefix`**            | `string`           | `undefined` | specify the tag prefix ([details](https://github.com/thomzcapra/semver#tag-prefix-customization))                                                                |
+| **`--postTargets`**          | `string[]`         | `[]`        | specify the list of target to execute post-release ([details](https://github.com/thomzcapra/semver#triggering-executors-post-release))                           |
+| **`--trackDeps`**            | `boolean`          | `false`     | bump dependent packages (bump A if A depends on B) ([details](https://github.com/thomzcapra/semver#tracking-dependencies))                                       |
+| **`--allowEmptyRelease`**    | `boolean`          | `false`     | force a patch increment even if library source didn't change                                                                                                     |
+| **`--skipCommitTypes`**      | `string[]`         | `[]`        | treat commits with specified types as non invoking version bump ([details](https://github.com/thomzcapra/semver#skipping-release-for-specific-types-of-commits)) |
+| **`--skipCommit`**           | `boolean`          | `false`     | skips generating a new commit, leaves all changes in index, tag would be put on last commit ([details](https://github.com/thomzcapra/semver#skipping-commit))    |
+| **`--skipStage`**            | `boolean`          | `false`     | skips add to git stage, useful when you want to run nx cmd in parallel ([details](https://github.com/thomzcapra/semver#skipping-stage))                          |
+| **`--commitMessageFormat`**  | `string`           | `undefined` | format the auto-generated message commit ([details](https://github.com/thomzcapra/semver#commit-message-customization))                                          |
+| **`--preset`**               | `string \| object` | `'angular'` | customize Conventional Changelog options ([details](https://github.com/thomzcapra/semver#customizing-conventional-changelog))                                    |
+| **`--commitParserOptions`**  | `object`           | `undefined` | customize the commit parserConfig ([details](https://github.com/thomzcapra/semver#customizing-the-commit-parser))                                                |
 
 ## Guides
 
@@ -100,7 +145,7 @@ You can customize the default configuration using the definition file:
 
 ```json
 {
-  "executor": "@jscutlery/semver:version",
+  "executor": "@millenniumbcp/version:version",
   "options": {
     "baseBranch": "master",
     "preset": "atom",
@@ -134,7 +179,7 @@ The preset is highly configurable, following the [conventional-changelog-config-
 
 ```json
 {
-  "executor": "@jscutlery/semver:version",
+  "executor": "@millenniumbcp/version:version",
   "options": {
     "preset": {
       "commitUrlFormat": "{{host}}/{{owner}}/{{repository}}/commit/{{hash}}",
@@ -157,7 +202,7 @@ It is possible to customize any preset by passing its name.
 
 ```json
 {
-  "executor": "@jscutlery/semver:version",
+  "executor": "@millenniumbcp/version:version",
   "options": {
     "preset": {
       "name": "angular",
@@ -179,7 +224,7 @@ You may customize the config for the commit parser. This can be helpful when you
 
 ```json
 {
-  "executor": "@jscutlery/semver:version",
+  "executor": "@millenniumbcp/version:version",
   "options": {
     "commitParserOptions": {
       "headerPattern": "^([A-Z]{3,}-\\d{1,5}):? (chore|build|ci|docs|feat|fix|perf|refactor|test)(?:\\(([\\w-]+)\\))?\\S* (.+)$",
@@ -303,14 +348,14 @@ Here is a configuration example using [`@jscutlery/semver:github`](https://githu
       /* ... */
     },
     "version": {
-      "executor": "@jscutlery/semver:version",
+      "executor": "@millenniumbcp/version:version",
       "options": {
         "push": true,
         "postTargets": ["build", "npm", "github"],
       },
     },
     "github": {
-      "executor": "@jscutlery/semver:github",
+      "executor": "@millenniumbcp/version:github",
       "options": {
         "tag": "{tag}",
         "notes": "{notes}",
@@ -341,8 +386,8 @@ Contextual variables resolved by this option:
 
 #### Built-in post-targets
 
-- [`@jscutlery/semver:github`](https://github.com/jscutlery/semver/blob/main/packages/semver/src/executors/github/README.md) GiHub Release Support
-- [`@jscutlery/semver:gitlab`](https://github.com/jscutlery/semver/blob/main/packages/semver/src/executors/gitlab/README.md) GitLab Release Support
+- [`@millenniumbcp/version:github`](https://github.com/thomzcapra/semver/blob/main/packages/semver/src/executors/github/README.md) GiHub Release Support
+- [`@millenniumbcp/version:gitlab`](https://github.com/thomzcapra/semver/blob/main/packages/semver/src/executors/gitlab/README.md) GitLab Release Support
 
 ### Tracking dependencies
 
@@ -372,7 +417,7 @@ Additionally, if used in conjunction with `nx run-many --all`, or `nx affected`,
 then it will avoid attempting to version dependencies multiple times.
 
 > [!WARNING]  
-> Be aware that this feature has known [limitations](https://github.com/jscutlery/semver/issues/526).
+> Be aware that this feature has known [limitations](https://github.com/thomzcapra/semver/issues/526).
 
 ## CI/CD usage
 
@@ -448,10 +493,10 @@ Note that you might need to configure a [deploy key](https://docs.gitlab.com/ee/
 If you want to migrate to Nx Release, run the following command:
 
 ```bash
-nx g @jscutlery/semver:migrate-nx-release
+nx g @millenniumbcp/version:migrate-nx-release
 ```
 
-By executing this generator, the existing `@jscutlery/semver` configuration will be removed, and Nx Release will be appropriately configured for your projects.
+By executing this generator, the existing `@millenniumbcp/version` configuration will be removed, and Nx Release will be appropriately configured for your projects.
 
 > [!NOTE]
 > The migration process does not currently support the sync mode.
@@ -478,11 +523,46 @@ For more details on using Nx Release, refer to the [official Nx documentation](h
 
 ## Changelog
 
-For new features or breaking changes [see the changelog](https://github.com/jscutlery/semver/blob/main/packages/semver/CHANGELOG.md).
+For new features or breaking changes, please refer to the [changelog](https://github.com/thomzcapra/semver/blob/main/packages/semver/CHANGELOG.md).
 
-## Contributors
+---
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification.
+## Contributing
+
+We welcome contributions from the community! This project is maintained by Millennium BCP's engineering team and follows enterprise-grade standards for code quality and security.
+
+Before contributing, please review our [Contributing Guidelines](CONTRIBUTING.md).
+
+---
+
+## Support
+
+For issues, questions, or feature requests:
+
+- 📋 [GitHub Issues](https://github.com/thomzcapra/semver/issues)
+- 📖 [Documentation](https://github.com/thomzcapra/semver)
+
+---
+
+## Acknowledgments
+
+This project is a fork of the excellent [@jscutlery/semver](https://github.com/jscutlery/semver) project. We extend our gratitude to the original contributors and maintainers for their foundational work.
+
+---
+
+## License
+
+This project is MIT licensed.
+
+---
+
+<div align="center">
+
+**Developed with ❤️ by [Millennium BCP](https://www.millenniumbcp.pt/en) Engineering Team**
+
+[![Millennium BCP](https://img.shields.io/badge/Millennium-BCP-blue?style=for-the-badge)](https://www.millenniumbcp.pt/en)
+
+</div>
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->

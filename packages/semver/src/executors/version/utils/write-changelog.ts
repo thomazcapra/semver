@@ -1,4 +1,4 @@
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import * as createPreset from 'conventional-changelog-conventionalcommits';
 import { accessSync, constants, readFileSync, writeFileSync } from 'fs';
 import { WriteChangelogConfig } from '../schema';
